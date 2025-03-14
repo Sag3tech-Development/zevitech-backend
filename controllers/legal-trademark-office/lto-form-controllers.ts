@@ -3,15 +3,17 @@ import path from "path";
 import ejs from "ejs";
 import { fileURLToPath } from "url";
 
-import { config } from "../config.js";
+import { config } from "../../config.js";
 
-import LtoForm from "../models/lto-form.js";
+import LtoForm from "../../models/legal-trademark-office/lto-form-model.js";
 
-import { CatchAsyncErrors } from "../utils/catch-async-errors.js";
-import { ErrorHandler } from "../utils/error-handler.js";
-import { LtoSendMail } from "../utils/send-mails.js";
-import { LtoStep1FormPrepareUserData } from "../utils/prepare-user-data.js";
-import { FormIdGenerator } from "utils/form-id-generator.js";
+import { MoveToLtoLeads } from "services/lto-data-movement.js";
+
+import { CatchAsyncErrors } from "../../utils/catch-async-errors.js";
+import { ErrorHandler } from "../../utils/error-handler.js";
+import { LtoSendMail } from "../../utils/send-mails.js";
+import { LtoStep1FormPrepareUserData } from "../../utils/prepare-user-data.js";
+import { FormIdGenerator } from "../../utils/form-id-generator.js";
 
 // STEP 1 FORM FUNCTION
 export const LtoStep1FormFunction = CatchAsyncErrors(
@@ -49,6 +51,8 @@ export const LtoStep1FormFunction = CatchAsyncErrors(
         formId,
       });
 
+      await MoveToLtoLeads(formId);
+
       const __dirname = path.dirname(fileURLToPath(import.meta.url));
       const data = {
         client: formData,
@@ -57,7 +61,7 @@ export const LtoStep1FormFunction = CatchAsyncErrors(
 
       const templatePath = path.join(
         __dirname,
-        "../mails",
+        "../../mails",
         "lto-step-1-form-complete-mail.ejs"
       );
 

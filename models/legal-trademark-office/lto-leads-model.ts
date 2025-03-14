@@ -1,11 +1,11 @@
 import { model, Schema } from "mongoose";
 
-import { LtoFormInterface } from "interfaces/model-interfaces.js";
+import { LtoLeadsInterface } from "interfaces/model-interfaces.js";
 
 import { EmailValidator } from "utils/email-validator.js";
 import { PhoneNumberValidator } from "utils/number-validator.js";
 
-const LtoFormModel: Schema<LtoFormInterface> = new Schema<LtoFormInterface>(
+const LtoLeadsModel: Schema<LtoLeadsInterface> = new Schema<LtoLeadsInterface>(
   {
     formId: {
       type: String,
@@ -41,5 +41,5 @@ const LtoFormModel: Schema<LtoFormInterface> = new Schema<LtoFormInterface>(
   { timestamps: true }
 );
 
-const LtoForm = model<LtoFormInterface>("LtoForm", LtoFormModel);
-export default LtoForm;
+const LtoLeads = model<LtoLeadsInterface>("LtoLeads", LtoLeadsModel);
+export default LtoLeads;

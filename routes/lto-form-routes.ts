@@ -1,6 +1,6 @@
 import express from "express";
 
-import { LtoStep1FormFunction } from "../controllers/lto-form-controllers.js";
+import { LtoStep1FormFunction } from "../controllers/legal-trademark-office/lto-form-controllers.js";
 
 const LtoFormRouter = express.Router();
 
