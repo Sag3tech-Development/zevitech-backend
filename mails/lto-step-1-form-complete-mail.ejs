@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Lead Generated</title>
+    <style>
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #000000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .heading-container {
+        margin-bottom: 28px;
+        margin-top: 16px;
+      }
+
+      .heading-container .heading {
+        margin-bottom: 28px;
+        margin-top: 16px;
+      }
+
+      .heading {
+        font-size: 18px !important;
+        color: #000000 !important;
+        font-weight: 600 !important;
+        line-height: 0;
+      }
+
+      .subheading {
+        font-size: 16px !important;
+        color: #000000 !important;
+        font-weight: 400 !important;
+        line-height: 0;
+      }
+
+      .title-heading {
+        font-size: 28px !important;
+        color: #000000 !important;
+        font-weight: 600 !important;
+        margin-top: 20px;
+      }
+
+      .email-container {
+        background-color: #ffffff;
+        max-width: 600px;
+        margin: 30px auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .email-header {
+        background-color: #000000;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .email-header img {
+        max-width: 150px;
+        margin-bottom: 4px;
+      }
+
+      .email-header h1 {
+        font-size: 24px;
+        margin: 12px;
+      }
+
+      .email-body {
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      .client-info {
+        margin-top: 10px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .client-info p {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 12px;
+        color: #888;
+      }
+
+      .footer a {
+        color: #ffc857;
+        text-decoration: none;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 20px;
+        background-color: #000000 !important;
+        color: #ffc857 !important;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-size: 14px;
+        margin-right: 0.5rem;
+      }
+
+      .btn:hover {
+        background-color: #333333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <!-- Header Section -->
+      <div class="email-header">
+        <img
+          src="https://res.cloudinary.com/dptujgmbz/image/upload/v1741983786/Legal_Trademark_Office_White_Logo_xixdmz.png"
+          alt="Legal Trademark Office Logo"
+        />
+        <h1>Legal Trademark Office - New Lead Generated</h1>
+      </div>
+
+      <!-- Body Section -->
+      <div class="email-body">
+        <div class="heading-container">
+          <h2 class="heading">
+            Form Id: <span class="subheading"><%= formId %></span>
+          </h2>
+          <h2 class="heading">
+            Lead Status: <span class="subheading">Step 01 Completed</span>
+          </h2>
+        </div>
+
+        <hr />
+
+        <h1 class="title-heading">Personal Information</h1>
+
+        <div class="client-info">
+          <p>
+            <strong>Name:</strong> <%= client.firstName %> <%= client.lastName
+            %>
+          </p>
+          <p>
+            <strong>Address:</strong> <%= client.address %>, <%= client.city %>,
+            <%= client.state %> <%= client.zipCode %>
+          </p>
+          <p><strong>Email:</strong> <%= client.emailAddress %></p>
+          <p><strong>Phone:</strong> <%= client.phoneNumber %></p>
+          <p>
+            <strong>Landline:</strong> <%= client.landlineNumber || 'N/A' %>
+          </p>
+
+          <p>
+            <strong>Preferred Contact Time:</strong> <%=
+            client.preferredContactTime || 'Not specified' %>
+          </p>
+        </div>
+
+        <div class="btn-container">
+          <a href="tel:<%= client.phoneNumber %>" class="btn">Contact Client</a>
+          <a href="mailto:<%= client.emailAddress %>" class="btn"
+            >Email Client</a
+          >
+        </div>
+      </div>
+
+      <!-- Footer Section -->
+      <div class="footer">
+        <p>
+          This is an automated email. Please do not reply directly to this
+          email.
+        </p>
+        <p>
+          If you have any questions, visit our <a href="#">support page</a>.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

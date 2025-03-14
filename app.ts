@@ -7,6 +7,7 @@ import { config } from "./config.js";
 import { AppErrorHandler } from "./middlewares/app-error-handler.js";
 
 import BasicRouter from "./routes/basic-routes.js";
+import LtoFormRouter from "routes/lto-form-routes.js";
 
 export const app = express();
 
@@ -23,7 +24,8 @@ app.use(
   })
 );
 
-// API ROUTES
+// SYSTEM ROUTES
+app.use("/api/v1", LtoFormRouter);
 
 // BASIC ROUTES
 app.use("", BasicRouter);

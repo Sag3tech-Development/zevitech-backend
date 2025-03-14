@@ -15,11 +15,11 @@ const server = createServer(app);
 
 const StartServer = async (): Promise<void> => {
   try {
-    await ConnectMongooseDatabase();
-
     server.listen(config.port, () => {
       console.info(`Server is running on port: ${config.port}`);
     });
+
+    await ConnectMongooseDatabase();
 
     HandleRejection(server);
     GracefullyShutdown(server);
