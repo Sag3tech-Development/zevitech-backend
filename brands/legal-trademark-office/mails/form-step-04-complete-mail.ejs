@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lead Review Notification</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .email-container {
+        max-width: 600px;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .email-header {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .email-header img {
+        max-width: 150px;
+        margin-bottom: 10px;
+      }
+
+      .email-header h1 {
+        font-size: 24px;
+        margin: 0;
+        font-weight: bold;
+      }
+
+      .email-body {
+        padding: 20px;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .section-heading {
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+      }
+
+      .client-info {
+        background-color: #f4f4f4;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 10px;
+        border: 1px solid #ddd;
+      }
+
+      .client-info p {
+        margin: 8px 0;
+        font-size: 14px;
+      }
+
+      .btn-container {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #000000;
+        color: #ffc857;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+        margin: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #333333;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+        color: #999;
+        font-size: 12px;
+      }
+
+      .footer a {
+        color: #000;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      @media (max-width: 600px) {
+        .email-body,
+        .client-info {
+          padding: 15px;
+        }
+
+        .btn {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="email-header">
+        <img
+          src="https://res.cloudinary.com/dptujgmbz/image/upload/v1741983786/Legal_Trademark_Office_White_Logo_xixdmz.png"
+          alt="Legal Trademark Office Logo"
+        />
+        <h1>Ready for Review</h1>
+      </div>
+
+      <div class="email-body">
+        <p><strong>Form ID:</strong> <%= formId %></p>
+        <p><strong>Lead Status:</strong> Step 04 Completed</p>
+
+        <div class="section-heading">Personal Information</div>
+        <div class="client-info">
+          <p>
+            <strong>Name:</strong> <%= client.firstName %> <%= client.lastName
+            %>
+          </p>
+          <p>
+            <strong>Address:</strong> <%= client.address %>, <%= client.city %>,
+            <%= client.state %> <%= client.zipCode %>
+          </p>
+          <p><strong>Email:</strong> <%= client.emailAddress %></p>
+          <p><strong>Phone:</strong> <%= client.phoneNumber %></p>
+          <p>
+            <strong>Landline:</strong> <%= client.landlineNumber || 'N/A' %>
+          </p>
+          <p>
+            <strong>Preferred Contact Time:</strong> <%=
+            client.preferredContactTime || 'Not specified' %>
+          </p>
+        </div>
+
+        <div class="section-heading">Business Information</div>
+        <div class="client-info">
+          <p><strong>Protection Type:</strong> <%= client.protectionType %></p>
+        </div>
+
+        <div class="section-heading">Payment Information</div>
+        <div class="client-info">
+          <p><strong>Package Type:</strong> <%= client.packageType %></p>
+          <p><strong>Package Price:</strong> <%= client.packagePrice %></p>
+        </div>
+
+        <div class="section-heading">Additional Services</div>
+        <div class="client-info">
+          <p>
+            <strong>Government Fee:</strong> <%= client.isGovernmentFeeIncluded
+            %>
+          </p>
+          <p>
+            <strong>Rush Processing:</strong> <%=
+            client.isRushProcessingIncluded %>
+          </p>
+        </div>
+
+        <div class="section-heading">Total Payment</div>
+        <div class="client-info">
+          <p><strong>Total Amount:</strong> <%= client.totalAmount %></p>
+          <p><strong>Package Price:</strong> <%= client.packagePrice %></p>
+          <p>
+            <strong>Government Fee:</strong> <%= client.isGovernmentFeeIncluded
+            %>
+          </p>
+          <p>
+            <strong>Rush Processing:</strong> <%=
+            client.isRushProcessingIncluded %>
+          </p>
+          <hr />
+          <p><strong>Total Amount:</strong> <%= client.totalAmount %></p>
+        </div>
+
+        <div class="btn-container">
+          <a href="tel:<%= client.phoneNumber %>" class="btn">Contact Client</a>
+          <a href="mailto:<%= client.emailAddress %>" class="btn"
+            >Email Client</a
+          >
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>
+          This is an automated email. Please do not reply directly to this
+          email.
+        </p>
+        <p>
+          If you have any questions, visit our <a href="#">support page</a>.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
