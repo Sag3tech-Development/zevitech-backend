@@ -52,7 +52,6 @@
         color: #000;
         margin-top: 20px;
         margin-bottom: 10px;
-        border-bottom: 2px solid #ddd;
         padding-bottom: 5px;
       }
 
@@ -78,7 +77,7 @@
         display: inline-block;
         padding: 12px 24px;
         background-color: #000000;
-        color: #ffc857;
+        color: #ffc857 !important;
         font-weight: bold;
         text-decoration: none;
         border-radius: 5px;
@@ -156,6 +155,95 @@
         <div class="section-heading">Business Information</div>
         <div class="client-info">
           <p><strong>Protection Type:</strong> <%= client.protectionType %></p>
+
+          <% if (client.protectionType === "name") { %>
+          <p><strong>Protection Name:</strong> <%= client.protectionName %></p>
+          <% } else if (client.protectionType === "logo") { %>
+          <p><strong>Protection Logo:</strong> <%= client.protectionLogo %></p>
+          <p>
+            <strong>Protection Logo Color Scheme:</strong> <%=
+            client.protectionLogoColorScheme %>
+          </p>
+          <p>
+            <strong>Protection Logo Literal Elements:</strong> <%=
+            client.protectionLogoLiteralElements %>
+          </p>
+          <% } else if (client.protectionType === "slogan") { %>
+          <p>
+            <strong>Protection Slogan:</strong> <%= client.protectionSlogan %>
+          </p>
+          <% } else { %>
+          <p><strong>Protection Name:</strong> <%= client.protectionName %></p>
+          <p><strong>Protection Logo:</strong> <%= client.protectionLogo %></p>
+          <p>
+            <strong>Protection Logo Color Scheme:</strong> <%=
+            client.protectionLogoColorScheme %>
+          </p>
+          <p>
+            <strong>Protection Logo Literal Elements:</strong> <%=
+            client.protectionLogoLiteralElements %>
+          </p>
+          <p>
+            <strong>Protection Slogan:</strong> <%= client.protectionSlogan %>
+          </p>
+          <% } %>
+
+          <p>
+            <strong>Is Trademark In Use:</strong> <%= client.isTrademarkInUse %>
+          </p>
+
+          <% if (client.isTrademarkInUse) { %>
+          <p>
+            <strong>First Use Trademark Anywhere Date:</strong> <%=
+            client.trademarkFirstUseDate %>
+          </p>
+          <p>
+            <strong>First Use Trademark Commerce Date:</strong> <%=
+            client.trademarkFirstUseInCommerceDate %>
+          </p>
+          <p>
+            <strong>Trademark In Use Ownership Details:</strong> <%=
+            client.trademarkInUseOwnershipDetails %>
+          </p>
+          <% } %>
+
+          <p>
+            <strong>Will Trademark Owned By An Individual:</strong> <%=
+            client.isIndividuallyOwnedTrademark %>
+          </p>
+
+          <% if (!client.isIndividuallyOwnedTrademark) { %>
+          <p>
+            <strong>Is Organization US Based:</strong> <%=
+            client.isUSBasedOrganization %>
+          </p>
+          <p>
+            <strong>Organization Name:</strong> <%= client.organizationName %>
+          </p>
+          <p>
+            <strong>Organization Type:</strong> <%= client.organizationType %>
+          </p>
+          <% if (client.isUSBasedOrganization) { %>
+          <p>
+            <strong>Organization Formation State:</strong> <%=
+            client.organizationFormationState %>
+          </p>
+          <% } else { %>
+          <p>
+            <strong>Organization Formation Country:</strong> <%=
+            client.organizationFormationCountry %>
+          </p>
+          <% } %>
+          <p>
+            <strong>Organization Position:</strong> <%=
+            client.organizationPosition %>
+          </p>
+          <% } %>
+
+          <p>
+            <strong>Business Classification:</strong> <%=
+            client.businessClassification %>
+          </p>
         </div>
 
         <div class="section-heading">Payment Information</div>
@@ -167,26 +255,26 @@
         <div class="section-heading">Additional Services</div>
         <div class="client-info">
           <p>
-            <strong>Government Fee:</strong> <%= client.isGovernmentFeeIncluded
-            %>
+            <strong>Government Fee:</strong> <%=
+            client.isGovernmentFeeIncludedPrice %>
           </p>
+
           <p>
             <strong>Rush Processing:</strong> <%=
-            client.isRushProcessingIncluded %>
+            client.isRushProcessingIncludedPrice %>
           </p>
         </div>
 
         <div class="section-heading">Total Payment</div>
         <div class="client-info">
-          <p><strong>Total Amount:</strong> <%= client.totalAmount %></p>
           <p><strong>Package Price:</strong> <%= client.packagePrice %></p>
           <p>
-            <strong>Government Fee:</strong> <%= client.isGovernmentFeeIncluded
-            %>
+            <strong>Government Fee:</strong> <%=
+            client.isGovernmentFeeIncludedPrice %>
           </p>
           <p>
             <strong>Rush Processing:</strong> <%=
-            client.isRushProcessingIncluded %>
+            client.isRushProcessingIncludedPrice %>
           </p>
           <hr />
           <p><strong>Total Amount:</strong> <%= client.totalAmount %></p>
